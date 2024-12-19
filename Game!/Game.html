@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bride's Wedding Day Adventure</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #fff5f5;
+            color: #333;
+            margin: 0;
+            padding: 20;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        button {
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #ff1493;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <!--Link to Other Pages-->
+    <div class="gamepadding">
+        <a href="../index/index.html">Home</a> |
+        <a href="../Resume/Resume.html">Resume</a> |
+        <a href="../AboutMe/AboutMe.html">About Me</a> |
+        <a href="#">Game!</a>
+    </div>
+    
+
+    <!--Intro to Game-->
+    <div class="container">
+        <h1>Bride's Wedding Day Adventure</h1>
+        <p>Help the bride prepare for her big day! Choose the right actions to make her wedding perfect.</p>
+
+        <div id="question">
+            <p>The bride is waking up. What should she do first?</p>
+            <button onclick="makeChoice('brush teeth')">Brush Teeth</button>
+            <button onclick="makeChoice('stay in bed')">Stay in Bed</button>
+        </div>
+
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        let step = 0;
+
+        function makeChoice(choice) {
+            const question = document.getElementById('question');
+            const result = document.getElementById('result');
+
+            if (step === 0) {
+                if (choice === 'brush teeth') {
+                    result.textContent = "Great start! The bride is feeling fresh and ready for the day.";
+                    question.innerHTML = "Now she needs breakfast. What should she have? <br><button onclick=\"makeChoice('healthy')\">Healthy Smoothie</button> <button onclick=\"makeChoice('cake')\">Cake</button>";
+                } else {
+                    result.textContent = "Oh no! Staying in bed makes her late for the wedding.";
+                    question.innerHTML = "<button onclick=\"restartGame()\">Restart</button>";
+                }
+                step++;
+            } else if (step === 1) {
+                if (choice === 'healthy') {
+                    result.textContent = "Excellent choice! The bride feels energized.";
+                    question.innerHTML = "It's time to get dressed. Should she wear her wedding dress now? <br><button onclick=\"makeChoice('yes dress')\">Yes</button> <button onclick=\"makeChoice('no dress')\">No</button>";
+                } else {
+                    result.textContent = "Oops! Eating cake makes her feel too sluggish to move fast.";
+                    question.innerHTML = "<button onclick=\"restartGame()\">Restart</button>";
+                }
+                step++;
+            } else if (step === 2) {
+                if (choice === 'yes dress') {
+                    result.textContent = "She's ready to go! The bride looks stunning and is on time for the ceremony.";
+                    question.innerHTML = "The guests have started arriving. What should the bride do while waiting? <br><button onclick=\"makeChoice('greet guests')\">Greet Guests</button> <button onclick=\"makeChoice('hide')\">Hide in Room</button>";
+                } else {
+                    result.textContent = "Oh no! Without her dress, she's not ready for the wedding.";
+                    question.innerHTML = "<button onclick=\"restartGame()\">Restart</button>";
+                }
+                step++;
+            } else if (step === 3) {
+                if (choice === 'greet guests') {
+                    result.textContent = "The guests are delighted to see her! Everyone is excited for the ceremony.";
+                    question.innerHTML = "The wedding ceremony begins. Should the bride walk down the aisle slowly or quickly? <br><button onclick=\"makeChoice('slowly')\">Walk Slowly</button> <button onclick=\"makeChoice('quickly')\">Walk Quickly</button>";
+                } else {
+                    result.textContent = "Hiding makes the guests confused and worried. It's not a good look!";
+                    question.innerHTML = "<button onclick=\"restartGame()\">Restart</button>";
+                }
+                step++;
+            } else if (step === 4) {
+                if (choice === 'slowly') {
+                    result.textContent = "The ceremony proceeds beautifully. The bride looks radiant and composed.";
+                    question.innerHTML = "Congratulations! The bride's wedding day was a huge success! <button onclick=\"restartGame()\">Play Again</button>";
+                } else {
+                    result.textContent = "Walking quickly down the aisle feels rushed and chaotic. Not ideal!";
+                    question.innerHTML = "<button onclick=\"restartGame()\">Restart</button>";
+                }
+            }
+        }
+
+        function restartGame() {
+            step = 0;
+            const question = document.getElementById('question');
+            const result = document.getElementById('result');
+
+            question.innerHTML = "The bride is waking up. What should she do first? <br><button onclick=\"makeChoice('brush teeth')\">Brush Teeth</button> <button onclick=\"makeChoice('stay in bed')\">Stay in Bed</button>";
+            result.textContent = "";
+        }
+    </script>
+</body>
+</html>
